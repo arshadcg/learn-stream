@@ -10,7 +10,7 @@ public class StreamAPI {
 	public static void main(String[] args) {
 		// creating objects of Employee class
 		//int id, String firstName, String lastName, String dept, String gender, String location,double salary
-		long start = System.currentTimeMillis();
+	
 		List<Employee> empList=new ArrayList<>();
 		
 		empList.add(new Employee(1, "arshad", "shaik", "development", "M","hyderabad" ,55000 ));
@@ -36,35 +36,36 @@ public class StreamAPI {
 		empList.add(new Employee(21, "Alex", "P", "development", "M", "hyderabad", 65000));
 		empList.add(new Employee(22, "Lalwani", "M", "testing", "M", "hyderabad", 33000));
 		
-		
-		
-		//empList.stream().forEach(System.out::println);
-		// 1 : How many male and female employees are there in the organization?
+				// 1 : How many male and female employees are there in the organization?
 				System.out.println("Solution-1: "+ empList.stream().collect(Collectors.groupingBy(Employee::getGender, Collectors.counting() )));
+			
 				// 2 : Print the name of all departments in the organization?
 				System.out.println("Solution-2: "+empList.stream().map(Employee::getDept).distinct().sorted().collect(Collectors.toList()));
 				
 				//  3 : What is the average salary of male and female employees?
 				System.out.println("Solution-3: "+ empList.stream().collect(Collectors.groupingBy(Employee::getGender,Collectors.averagingDouble(Employee::getSalary))) );
+				
 				//  4 : Get the details of highest paid employee in the organization?
 				System.out.println("Solution-4: "+empList.stream().max(Comparator.comparing(Employee::getSalary)));
+				
 				//  5 : Get the names of all employees who have salary grater than 50000?
 				System.out.println("Solution-5: " +empList.stream().filter(o->o.getSalary()>=50000).collect(Collectors.toList()));
 				List<Employee> above50= empList.stream().filter(e->e.getSalary()>50000).collect(Collectors.toList());
 				//above50.stream().forEach(System.out::println);
+				
 				//  6 : Count the number of employees in each department?
 				System.out.println("Solution-6: "+empList.stream().collect(Collectors.groupingBy(Employee::getDept,Collectors.counting())));
 				
 				//  7 : What is the average salary of each department?
 				System.out.println("Solution-7: "+ empList.stream().collect(Collectors.groupingBy(Employee::getDept,Collectors.averagingDouble(Employee::getSalary))));
+				
 				//  8 : Get the details of Highest salary male employee in the product
 				System.out.println("Solution-8: " +empList.stream().filter(e->e.getGender().equalsIgnoreCase("M")).max(Comparator.comparing(Employee::getSalary)));
 				// development department?
 				
-				//  9 : Who has the most working experience in the organization?
+				//  9 : 
 				
-				//  10 : How many male and female employees are there in the sales and
-				// marketing team?
+				//  10 : How many male and female employees are there
 				System.out.println("Solution-10: "+ empList.stream()
 						.filter(e->e.getDept().equalsIgnoreCase("development")).collect(Collectors.groupingBy(Employee::getGender,Collectors.counting())));
 				
@@ -104,9 +105,7 @@ public class StreamAPI {
 				}
 				System.out.println(empList.stream().filter(e->e.getDept().equalsIgnoreCase("development")).map(e->e.getSalary()).collect(Collectors.toList()));
 				
-				long end = System.currentTimeMillis();
-				
-				System.out.println(end-start);
+		
 				
 				
 		
