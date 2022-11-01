@@ -105,7 +105,12 @@ public class StreamAPI {
 				}
 				System.out.println(empList.stream().filter(e->e.getDept().equalsIgnoreCase("development")).map(e->e.getSalary()).collect(Collectors.toList()));
 				
-		
+				// git from arshad/stream1 branch
+				
+				// filter entry of least salary
+				
+				System.out.println(empList.stream().min(Comparator.comparing(Employee::getSalary)));
+				
 				
 				
 		
